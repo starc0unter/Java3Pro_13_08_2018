@@ -14,28 +14,20 @@ public class ObjectStreamMain {
         System.out.println(p1);
         System.out.println(p2);
 //
-        writeObject(p1, "object1.txt");
-        writeObject(p2, "object2.txt");
 
-        Person p4 = readObject("object1.txt");
-        Person p5 = readObject("object2.txt");
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("objects.txt"));
+        out.writeObject(p1);
+        out.writeObject(p2);
+        out.close();
+
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream("objects.txt"));
+        Person p4 = (Person) in.readObject();
+        Person p5 = (Person) in.readObject();
+        in.close();
 
         System.out.println(p4);
         System.out.println(p5);
         return;
-    }
-
-    private static Person readObject(String fileName) throws IOException, ClassNotFoundException {
-        ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
-        Person p4 = (Person) in.readObject();
-        in.close();
-        return  p4;
-    }
-
-    private static void writeObject(Person p1, String fileName) throws IOException {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
-        out.writeObject(p1);
-        out.close();
     }
 
 }
