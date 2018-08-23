@@ -1,6 +1,7 @@
 package objects.stream;
 
 import java.io.*;
+import java.util.Objects;
 
 public class Person extends Human implements Serializable {
     private static final long serialVersionUID = 2L;
@@ -24,7 +25,21 @@ public class Person extends Human implements Serializable {
                 '}';
     }
 
-//    @Override
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) &&
+                Objects.equals(friend, person.friend);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, friend);
+    }
+
+    //    @Override
 //    public void writeExternal(ObjectOutput out) throws IOException {
 //        out.writeObject(name);
 //        out.writeObject(friend);
