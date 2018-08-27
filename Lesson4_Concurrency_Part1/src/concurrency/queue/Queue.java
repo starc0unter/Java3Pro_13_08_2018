@@ -7,7 +7,7 @@ public class Queue {
     int n;
     private boolean valueSet = false;
 
-    public int get() {
+    public synchronized int get() {
         while (!valueSet) {
             try {
                 wait();
@@ -21,7 +21,7 @@ public class Queue {
         return n;
     }
 
-    public void put(int n) {
+    public synchronized void put(int n) {
         while (valueSet) {
             try {
                 wait();

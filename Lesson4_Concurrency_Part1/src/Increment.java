@@ -1,11 +1,10 @@
 import javax.swing.plaf.TableHeaderUI;
 import java.awt.font.TextHitInfo;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Increment {
 
-    private static Object lock = new Object();
-
-    private volatile static Integer data = 0;
+    private volatile static AtomicInteger data = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread(() -> {
@@ -35,8 +34,8 @@ public class Increment {
     }
 
     private static void incrementValue() throws InterruptedException {
-        synchronized (lock) {
-        System.out.println(Thread.currentThread().getName() + " data = " + data++);
+        synchronized (data) {
+            System.out.println(Thread.currentThread().getName() + " data = " + data.getAndIncrement());
             Thread.sleep(100);
         }
     }
