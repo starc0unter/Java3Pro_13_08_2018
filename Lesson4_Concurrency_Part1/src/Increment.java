@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Increment {
 
+//    private volatile static AtomicInteger data = new AtomicInteger(0);
     private volatile static AtomicInteger data = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
@@ -35,7 +36,7 @@ public class Increment {
 
     private static void incrementValue() throws InterruptedException {
         synchronized (data) {
-            System.out.println(Thread.currentThread().getName() + " data = " + data.getAndIncrement());
+            System.out.println(Thread.currentThread().getName() + " data = " + data.incrementAndGet());
             Thread.sleep(100);
         }
     }
