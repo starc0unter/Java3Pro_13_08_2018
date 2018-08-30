@@ -11,8 +11,7 @@ public class JUL_Example {
     private static final Logger LOGGER = Logger.getLogger(JUL_Example.class.getName());
 
     public static void main(String[] args) throws SecurityException, IOException {
-        LogManager.getLogManager().readConfiguration(new FileInputStream("./Lesson6_TestAndLogging/src/main/resources/jul.properties"));
-
+//        LogManager.getLogManager().readConfiguration(new FileInputStream("C:\\Users\\krylo\\IdeaProjects\\Java 3 Pro\\Lesson6_TestAndLogging\\src\\main\\resources\\jul.properties"));
 
         LOGGER.info("Logger Name: " + LOGGER.getName());
         LOGGER.log(Level.INFO,"Logger Name: {0}. My name is {1}", new Object[]{LOGGER.getName(), "Oleg"});
